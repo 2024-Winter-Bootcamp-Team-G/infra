@@ -8,6 +8,6 @@ node_modules/
 package-lock.json
 yarn.lock
 
-# IntelliJ IDEA
+# IDE (PyCharm)
 .idea/
 *.iml
