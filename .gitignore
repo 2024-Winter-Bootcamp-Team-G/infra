@@ -7,3 +7,7 @@ node_modules/
 # Ignore lock files
 package-lock.json
 yarn.lock
+
+# IntelliJ IDEA
+.idea/
+*.iml
