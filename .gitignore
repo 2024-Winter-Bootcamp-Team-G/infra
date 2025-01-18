@@ -1,0 +1,13 @@
+# Ignore log files
+*.log
+
+# Ignore node_modules
+node_modules/
+
+# Ignore lock files
+package-lock.json
+yarn.lock
+
+# IDE (PyCharm)
+.idea/
+*.iml
