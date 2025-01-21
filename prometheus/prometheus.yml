@@ -1,9 +1,9 @@
 global:
-  scrape_interval: 15s #메트릭 수집 인터벌
-  evaluation_interval: 15s #메트릭 평가 인터벌
+  scrape_interval: 15s  # 메트릭 수집 인터벌
+  evaluation_interval: 15s  # 메트릭 평가 인터벌
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: 'prometheus'  # Prometheus
     static_configs:
       - targets: ['prometheus:9090']
 
@@ -11,18 +11,22 @@ scrape_configs:
     static_configs:
       - targets: ['fastapi-server:8000']
 
-  - job_name: 'postgresql-db'  # PostgreSQL
+  - job_name: 'postgres-exporter'  # PostgreSQL Exporter
     static_configs:
-      - targets: ['postgres:5432']
+      - targets: ['postgres-exporter:9187']
 
-  - job_name: 'redis-service'  # Redis
+  - job_name: 'redis'  # Redis 서비스
     static_configs:
       - targets: ['redis:6379']
 
-  - job_name: 'rabbitmq'  # RabbitMQ
+  - job_name: 'redis-exporter'  # Redis Exporter
     static_configs:
-      - targets: ['rabbitmq:15672']
+      - targets: ['redis-exporter:9121']
 
-  - job_name: 'cadvisor'
+  - job_name: 'rabbitmq-exporter'  # RabbitMQ Exporter
+    static_configs:
+      - targets: ['rabbitmq:15692']
+
+  - job_name: 'cadvisor'  # cAdvisor
     static_configs:
       - targets: ['cadvisor:8080']
