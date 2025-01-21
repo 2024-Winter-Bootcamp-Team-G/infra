@@ -1,13 +1,20 @@
-# Ignore log files
+# Docker
 *.log
+docker-compose.override.yml
+*.env
 
-# Ignore node_modules
-node_modules/
+# GCP
+gcp-key.json
 
-# Ignore lock files
-package-lock.json
-yarn.lock
-
-# IDE (PyCharm)
+# IDE/Editor
+.vscode/
 .idea/
-*.iml
+
+# MacOS
+.DS_Store
+Thumbs.db
+
+# etc
+*.bak
+*.swp
+*.tmp
