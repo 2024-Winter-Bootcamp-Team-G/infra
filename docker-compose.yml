@@ -1,7 +1,7 @@
 services:
   api-service:
     build:
-      context: ../backend
+      context: ./backend
       dockerfile: Dockerfile
     container_name: fastapi-server
     depends_on:
@@ -15,7 +15,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ../backend:/app
+      - ./backend:/app
+      - ./gcp-key.json:/app/gcp-key.json
     networks:
       - backend-network
     ports:
@@ -70,7 +71,7 @@ services:
 
   celery-worker:
     build:
-      context: ../backend
+      context: ./backend
       dockerfile: Dockerfile
     container_name: celery-worker
     depends_on:
@@ -81,7 +82,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ../backend:/app
+      - ./backend:/app
     environment:
       - PYTHONUNBUFFERED=1
       - C_FORCE_ROOT=False
@@ -161,21 +162,6 @@ services:
       - "9121:9121"
     networks:
       - backend-network
-
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq
-    environment:
-      RABBITMQ_DEFAULT_USER: guest  # 기본 사용자
-      RABBITMQ_DEFAULT_PASS: guest  # 기본 비밀번호
-      RABBITMQ_PROMETHEUS: 1  # Prometheus 플러그인 활성화
-    ports:
-      - "5672:5672"  # AMQP 포트
-      - "15672:15672"  # 관리 대시보드 포트
-      - "15692:15692"  # Prometheus 메트릭 포트
-    networks:
-      - backend-network
-
 
 volumes:
   db-data:
