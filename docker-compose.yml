@@ -13,7 +13,7 @@ services:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL}
       - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND}
     env_file:
-      - .env
+      - ./.env
     volumes:
       - ./backend:/app
       - ./gcp-key.json:/app/gcp-key.json
@@ -104,64 +104,7 @@ services:
       - api-service
     networks:
       - backend-network
-
-  prometheus:
-    image: prom/prometheus:v2.45.6
-    container_name: prometheus
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-    command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
-    networks:
-      - backend-network
-
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana-data:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    networks:
-      - backend-network
-
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest
-    container_name: cadvisor
-    ports:
-      - "8080:8080"
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-    networks:
-      - backend-network
-
-  postgres-exporter:
-    image: prometheuscommunity/postgres-exporter
-    container_name: postgres-exporter
-    environment:
-      DATA_SOURCE_NAME: "postgresql://postgres:postgres@postgresql-db:5432/mydatabase?sslmode=disable"
-    ports:
-      - "9187:9187"
-    networks:
-      - backend-network
-
-  redis-exporter:
-    image: oliver006/redis_exporter
-    container_name: redis-exporter
-    environment:
-      REDIS_ADDR: redis:6379
-    ports:
-      - "9121:9121"
-    networks:
-      - backend-network
+#프론트서버
 
 volumes:
   db-data:
