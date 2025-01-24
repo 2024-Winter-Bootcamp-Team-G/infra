@@ -104,7 +104,6 @@ services:
       - api-service
     networks:
       - backend-network
-#프론트서버
 
 volumes:
   db-data:
