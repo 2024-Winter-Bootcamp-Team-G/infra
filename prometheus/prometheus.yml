@@ -15,9 +15,9 @@ scrape_configs:
     static_configs:
       - targets: ['postgres-exporter:9187']
 
-  - job_name: 'redis'  # Redis 서비스
-    static_configs:
-      - targets: ['redis:6379']
+#  - job_name: 'redis'  # Redis 서비스
+#    static_configs:
+#      - targets: ['redis:6379']
 
   - job_name: 'redis-exporter'  # Redis Exporter
     static_configs:
