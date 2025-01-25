@@ -10,10 +10,10 @@ scrape_configs:
   - job_name: 'api-service'  # FastAPI
     static_configs:
       - targets: ['fastapi-server:8000']
-
-  - job_name: 'postgres-exporter'  # PostgreSQL Exporter
-    static_configs:
-      - targets: ['postgres-exporter:9187']
+#
+#  - job_name: 'postgres-exporter'  # PostgreSQL Exporter
+#    static_configs:
+#      - targets: ['postgres-exporter:9187']
 
 #  - job_name: 'redis'  # Redis 서비스
 #    static_configs:
