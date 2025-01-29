@@ -14,11 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4 # 레포 클론
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-    - run: python version
     - name: Show build number # 도커 허브에 올릴 빌드 넘버 만들기
       run: |
         echo "Build Number: ${{ github.run_number }}" # 빌드 넘버는 런 넘버 입니다
