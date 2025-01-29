@@ -51,5 +51,6 @@ jobs:
       env:
         DOCKER_IMAGE_TAG: ${{ steps.set_docker_image_tag.outputs.DOCKER_IMAGE_TAG }}
       run: |
+        cd backend
         docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/algorify-infra:$DOCKER_IMAGE_TAG .
         docker push ${{ secrets.DOCKER_HUB_USERNAME }}/algorify-infra:$DOCKER_IMAGE_TAG
