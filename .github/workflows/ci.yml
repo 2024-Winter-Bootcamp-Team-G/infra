@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4 # 레포 클론
+      with:
+        submodules: true  # 서브모듈 포함
+        fetch-depth: 0     # 전체 히스토리 가져오기
 
     - name: Show build number # 도커 허브에 올릴 빌드 넘버 만들기
       run: |
