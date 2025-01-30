@@ -13,12 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4 # 레포 클론
-
-    - name: Set up Go 1.23
-      uses: actions/setup-go@v5 # 저는 고 언어 빌드를 했습니다. 다른 언어는 marketplace에 찾으시면 됩니다
       with:
-        go-version: '1.23'
-    - run: go version
+        submodules: true  # 서브모듈 포함
+        fetch-depth: 0     # 전체 히스토리 가져오기
+
     - name: Show build number # 도커 허브에 올릴 빌드 넘버 만들기
       run: |
         echo "Build Number: ${{ github.run_number }}" # 빌드 넘버는 런 넘버 입니다
@@ -47,7 +45,7 @@ jobs:
         fi
         echo "Docker Image Tag: $DOCKER_IMAGE_TAG"
         echo "DOCKER_IMAGE_TAG"="${DOCKER_IMAGE_TAG}" >> $GITHUB_OUTPUT
-    - name: Log in to Docker Hub # 도커 허브 로그인
+    - name: Log in to Docker Hub  # 도커 허브 로그인
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
@@ -56,5 +54,5 @@ jobs:
       env:
         DOCKER_IMAGE_TAG: ${{ steps.set_docker_image_tag.outputs.DOCKER_IMAGE_TAG }}
       run: |
-        docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/도커-허브-레포-이름:$DOCKER_IMAGE_TAG .
-        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/도커-허브-레포-이름:$DOCKER_IMAGE_TAG
+        docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/algorify-infra:$DOCKER_IMAGE_TAG  -f backend/Dockerfile backend
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/algorify-infra:$DOCKER_IMAGE_TAG

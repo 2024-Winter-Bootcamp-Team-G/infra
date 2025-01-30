@@ -58,7 +58,7 @@ services:
       - "9121:9121"
     networks:
       - backend-network
-#alertmanager, nginx-exporter, node-exporter 필요 시 추가
+#alertmanager, nginx-exporter  필요 시 추가
 
 volumes:
   db-data:
