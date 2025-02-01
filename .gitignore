@@ -1,0 +1,23 @@
+# Docker
+*.log
+docker-compose.override.yml
+*.env
+
+# GCP
+gcp-key.json
+
+# IDE/Editor
+.vscode/
+.idea/
+
+# MacOS
+.DS_Store
+Thumbs.db
+
+# etc
+*.bak
+*.swp
+*.tmp
+
+# Cerbot
+certbot/
